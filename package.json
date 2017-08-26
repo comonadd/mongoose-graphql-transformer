@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Utility which transforms Mongoose schemas to GraphQL types",
   "main": "build/index.js",
+  "files": [
+    "build",
+    "src",
+    "index.d.ts",
+    "package.json"
+  ],
   "scripts": {
     "build": "yarn run build:dev && yarn run build:release",
     "build:dev": "mkdir -p build && BABEL_ENV=dev babel src/index.js --source-maps --out-file build/index.js",
