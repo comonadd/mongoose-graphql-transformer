@@ -7,9 +7,10 @@
     "build": "yarn run build:dev && yarn run build:release",
     "build:dev": "mkdir -p build && BABEL_ENV=dev babel src/index.js --source-maps --out-file build/index.js",
     "build:release": "mkdir -p build && BABEL_ENV=release babel src/index.js --out-file build/index.min.js",
-    "check": "eslint ./src/**/*.js",
+    "check": "eslint ./src/**/*.js ./examples/**/*.js",
     "test": "jest",
-    "prepublish": "yarn run check && yarn run test && yarn run build"
+    "examples": "BABEL_ENV=dev babel-node ./examples/index.js",
+    "prepublish": "yarn run check && yarn run test && yarn run examples && yarn run build"
   },
   "keywords": [
     "mongo",

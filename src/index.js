@@ -26,9 +26,29 @@ const possibleGraphQLClasses = {
 const setFnName = (fn, name) =>
   Object.defineProperty(fn, 'name', { value: name });
 
+/**
+ * @summary
+ * Generate name for a sub-field of a type with a given name.
+ *
+ * @param {String} rootTypeName - The name of the root type.
+ * @param {String} subFieldKeyname - The name of the sub-field in
+ * a Mongoose schema (path).
+ *
+ * @return {String}
+ */
 export const generateNameForSubField = (rootTypeName, subFieldKeyName) =>
   `${rootTypeName}_${subFieldKeyName}`;
 
+/**
+ * @summary
+ * Generate description for a sub-field of a type with a given name.
+ *
+ * @param {String} rootTypeName - The name of the root type.
+ * @param {String} subFieldKeyname - The name of the sub-field in
+ * a Mongoose schema (path).
+ *
+ * @return {String}
+ */
 export const generateDescriptionForSubField = (rootTypeName, subFieldKeyName) =>
   `${rootTypeName}'s '${subFieldKeyName}' sub-field`;
 
