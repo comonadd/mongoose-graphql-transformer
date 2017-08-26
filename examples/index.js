@@ -9,10 +9,12 @@ import util from './util';
 
 const exampleModuleNames = ['basic', 'extend', 'exclude'];
 
-exampleModuleNames.map(exampleModuleName => {
+exampleModuleNames.map((exampleModuleName) => {
   const execute = require(`./${exampleModuleName}`);
 
   util.printExampleBanner(exampleModuleName);
 
   execute();
+
+  return undefined;
 });
