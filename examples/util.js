@@ -15,7 +15,7 @@ export const printExampleBanner = (exampleName) => {
               boxInnerMsg.length +
               boxRightSpace.length +
               (boxBorderWithoutColors.length * 2),
-    }
+    },
   ).map(() => '+').join(''));
 
   console.log();
