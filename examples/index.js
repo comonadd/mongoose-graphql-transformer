@@ -5,6 +5,14 @@
  * npm script is executed.
  */
 
-import basic from './basic';
-import extend from './extend';
-import exclude from './exclude';
+import util from './util';
+
+const exampleModuleNames = ['basic', 'extend', 'exclude'];
+
+exampleModuleNames.map(exampleModuleName => {
+  const execute = require(`./${exampleModuleName}`);
+
+  util.printExampleBanner(exampleModuleName);
+
+  execute();
+});
