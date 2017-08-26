@@ -1,7 +1,6 @@
 import {
   GraphQLBoolean,
   GraphQLEnumType,
-  GraphQLFloat,
   GraphQLInputObjectType,
   GraphQLInt,
   GraphQLInterfaceType,
@@ -10,14 +9,13 @@ import {
   GraphQLString,
   GraphQLUnionType,
 } from 'graphql';
-import mongoose from 'mongoose';
 
 const possibleGraphQLClasses = {
-  GraphQLObjectType: GraphQLObjectType,
-  GraphQLInputObjectType: GraphQLInputObjectType,
-  GraphQLInterfaceType: GraphQLInterfaceType,
-  GraphQLUnionType: GraphQLUnionType,
-  GraphQLEnumType: GraphQLEnumType,
+  GraphQLObjectType,
+  GraphQLInputObjectType,
+  GraphQLInterfaceType,
+  GraphQLUnionType,
+  GraphQLEnumType,
 };
 
 /**
@@ -64,7 +62,7 @@ const convertPrimitiveObjectInstanceToGraphQLType = (instanceName) => {
     case 'Date':
     case 'Mixed': return GraphQLString;
     case 'Boolean':
-    case 'Buffer': return GraphQLBoolean
+    case 'Buffer': return GraphQLBoolean;
     case 'Number': return GraphQLInt;
     default: throw new Error(
       `unknown primitive object instance name: "${instanceName}"`,
@@ -139,7 +137,7 @@ const memoize = (name, resultingGraphQLType) => {
   }
 
   generatedTypesMemory[name] = resultingGraphQLType;
-}
+};
 
 /**
  * @summary Retrieve type from the memory by name.
@@ -167,7 +165,7 @@ const createType = (args) => {
   const rootSchemaPaths = parsedArgs.schema.paths;
 
   const setResultingTypeField = (key, val) => {
-    let oldFields = resultingGraphQLOptions.fields;
+    const oldFields = resultingGraphQLOptions.fields;
     resultingGraphQLOptions.fields = () => Object.assign(
       {},
       oldFields(),
@@ -176,7 +174,7 @@ const createType = (args) => {
   };
 
   const setResultingTypeFieldFn = (key, val) => {
-    let oldFields = resultingGraphQLOptions.fields;
+    const oldFields = resultingGraphQLOptions.fields;
     resultingGraphQLOptions.fields = () => Object.assign(
       {},
       oldFields(),
@@ -185,7 +183,7 @@ const createType = (args) => {
   };
 
   const extendResultingTypeField = (newFields) => {
-    let oldFields = resultingGraphQLOptions.fields;
+    const oldFields = resultingGraphQLOptions.fields;
     resultingGraphQLOptions.fields = () => Object.assign(
       {},
       oldFields(),
@@ -195,8 +193,8 @@ const createType = (args) => {
 
   Object
     .keys(rootSchemaPaths)
-    .filter((pathName) => parsedArgs.exclude.indexOf(pathName) === -1)
-    .map((pathName) => {
+    .filter(pathName => parsedArgs.exclude.indexOf(pathName) === -1)
+    .forEach((pathName) => {
       const path = rootSchemaPaths[pathName];
 
       // If path points to another object
@@ -222,9 +220,9 @@ but was specified as population reference.
             }
 
             return {
-              type: refGraphQLType
+              type: refGraphQLType,
             };
-          }
+          },
         );
 
         // Go to the next path
@@ -234,7 +232,7 @@ but was specified as population reference.
       const pathInstanceName = path.instance;
 
       // If the field represents another user-defined schema
-      if (pathInstanceName == 'Embedded') {
+      if (pathInstanceName === 'Embedded') {
         if (parsedArgs.schema === path.schema) {
           setResultingTypeFieldFn(pathName, () => ({
             type: resultingGraphQLType,
@@ -253,7 +251,7 @@ but was specified as population reference.
                 schema: path.schema,
                 exclude: parsedArgs.exclude,
               }),
-            }
+            },
           );
         }
 
@@ -262,7 +260,7 @@ but was specified as population reference.
       }
 
       // If the field represents an array
-      if (pathInstanceName == 'Array') {
+      if (pathInstanceName === 'Array') {
         if (path.schema) {
           // This is the array which contains other user-defined schema
           if (parsedArgs.schema === path.schema) {
@@ -307,7 +305,9 @@ but was specified as population reference.
       // the field is of a primitive type.
       setResultingTypeField(
         pathName,
-        {type: convertPrimitiveObjectInstanceToGraphQLType(pathInstanceName)},
+        {
+          type: convertPrimitiveObjectInstanceToGraphQLType(pathInstanceName),
+        },
       );
     });
 
@@ -326,6 +326,6 @@ but was specified as population reference.
   memoize(parsedArgs.name, resultingGraphQLType);
 
   return resultingGraphQLType;
-}
+};
 
 export default createType;
