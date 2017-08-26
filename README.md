@@ -1,6 +1,8 @@
 mongoose-graphql-transformer
 ============================
 
+![Travis CI Status](https://travis-ci.org/wrongway4you/mongoose-graphql-transformer.svg?branch=master)
+
 ## Description
 
 This package provides the ability to convert Mongoose schemas to GraphQL
