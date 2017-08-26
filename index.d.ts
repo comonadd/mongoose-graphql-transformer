@@ -1,4 +1,4 @@
-declare module 'mongoose-schema-to-graphql' {
+declare module 'mongoose-graphql-transformer' {
 
     import * as mongoose from 'mongoose';
 
@@ -28,4 +28,5 @@ declare module 'mongoose-schema-to-graphql' {
     function mainFunction(config: ConfigurationObject): any;
 
     export = mainFunction;
+
 }
