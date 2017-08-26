@@ -10,7 +10,7 @@
     "check": "eslint ./{src,examples}/**/*.js",
     "test": "jest",
     "examples": "BABEL_ENV=dev babel-node ./examples/index.js",
-    "prepublish": "yarn run check && yarn run test && yarn run examples && yarn run build"
+    "prepublish": "yarn run check && yarn run test && yarn run build"
   },
   "keywords": [
     "mongo",
