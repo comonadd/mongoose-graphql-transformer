@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Utility which transforms Mongoose schemas to GraphQL types",
   "main": "build/index.js",
+  "module": "src/index.js",
   "files": [
     "build",
     "src",
