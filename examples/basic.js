@@ -6,7 +6,7 @@
  */
 
 import mongoose from 'mongoose';
-import mongooseGraphQLTransform from '../build'
+import mongooseGraphQLTransform from '../build';
 
 // Create basic Mongoose schema
 const AnimalMongoose = new mongoose.Schema({
@@ -28,3 +28,11 @@ const AnimalGraphQL = mongooseGraphQLTransform({
   // Specify the Mongoose schema
   schema: AnimalMongoose,
 });
+
+module.exports = () => {
+  console.log('Mongoose schema: ', AnimalMongoose);
+  console.log(
+    'Generated GraphQL type:',
+    AnimalGraphQL,
+  );
+};

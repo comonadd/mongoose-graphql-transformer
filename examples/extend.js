@@ -6,11 +6,11 @@
  */
 
 import mongoose from 'mongoose';
-import mongooseGraphQLTransform from '../build'
 import {
   GraphQLList,
   GraphQLString,
 } from 'graphql';
+import mongooseGraphQLTransform from '../build';
 
 // Create basic Mongoose schema
 const AnimalMongoose = new mongoose.Schema({
@@ -41,3 +41,11 @@ const AnimalGraphQL = mongooseGraphQLTransform({
     },
   },
 });
+
+module.exports = () => {
+  console.log('Mongoose schema: ', AnimalMongoose);
+  console.log(
+    'Generated GraphQL type:',
+    AnimalGraphQL,
+  );
+};
