@@ -1,6 +1,6 @@
 {
   "name": "mongoose-graphql-transformer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility which transforms Mongoose schemas to GraphQL types",
   "main": "build/index.js",
   "module": "src/index.js",
